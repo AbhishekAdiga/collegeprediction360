@@ -135,7 +135,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 </span>
               </button>
               
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <div className="mr-3 text-right hidden sm:block">
                   <p className="text-sm font-medium text-gray-700">
                     {user?.name || 'User'}
@@ -147,6 +147,26 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 <div className="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-semibold">
                   {user?.name?.charAt(0) || 'U'}
                 </div>
+              </div> */}
+              <div className="flex items-center">
+                <Link
+                  to="/profile"
+                  className="mr-3 text-right hidden sm:block cursor-pointer"
+                >
+                  <p className="text-sm font-medium text-gray-700 hover:underline">
+                    {user?.name || "User"}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {user?.isPremium ? "Premium" : "Free"}
+                  </p>
+                </Link>
+
+                <Link
+                  to="/profile"
+                  className="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-semibold"
+                >
+                  {user?.name?.charAt(0) || "U"}
+                </Link>
               </div>
             </div>
           </div>

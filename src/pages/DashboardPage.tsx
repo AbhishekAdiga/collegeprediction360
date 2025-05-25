@@ -148,7 +148,8 @@ const DashboardPage: React.FC = () => {
               </div>
               <Link to="/premium">
                 <Button 
-                  className="bg-white text-primary-600 hover:bg-gray-100"
+                  size="lg" 
+                  className="bg-primary-600 text-white hover:bg-white hover:text-primary-600 border border-primary-600 transition-colors duration-200 shadow-md hover:shadow-lg focus:ring-4 focus:ring-primary-300"
                 >
                   View Premium Plans
                 </Button>

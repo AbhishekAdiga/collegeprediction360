@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Check, X, CreditCard, LucideIcon } from 'lucide-react';
+import { Check, X, CreditCard, QrCode,Home, LucideIcon } from 'lucide-react';
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
+
 
 interface PlanFeature {
   name: string;
@@ -344,9 +345,11 @@ const PremiumPage: React.FC = () => {
                   
                   <div className="mb-6">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Card Information
+                      Payment Options
                     </label>
-                    <div className="border border-gray-300 rounded-lg p-4 flex items-center justify-between">
+
+                    {/* Credit/Debit Card */}
+                    <div className="border border-gray-300 rounded-lg p-4 flex items-center justify-between mb-4">
                       <div className="flex items-center">
                         <CreditCard size={20} className="text-gray-500 mr-2" />
                         <span className="text-gray-700">Credit / Debit Card</span>
@@ -357,7 +360,34 @@ const PremiumPage: React.FC = () => {
                         <img src="https://cdn-icons-png.flaticon.com/128/196/196539.png" alt="American Express" className="h-6" />
                       </div>
                     </div>
+
+                    {/* UPI */}
+                    <div className="border border-gray-300 rounded-lg p-4 flex items-center justify-between mb-4">
+                      <div className="flex items-center">
+                        <QrCode size={20} className="text-gray-500 mr-2" />
+                        <span className="text-gray-700">UPI</span>
+                      </div>
+                      <div className="flex space-x-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/PhonePe_Logo.svg/512px-PhonePe_Logo.svg.png" alt="PhonePe" className="h-6" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Google_Pay_Logo.svg" alt="Google Pay" className="h-6" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Google_Pay_Logo.svg" alt="Paytm" className="h-6" />
+                      </div>
+                    </div>
+
+                    {/* Netbanking */}
+                    <div className="border border-gray-300 rounded-lg p-4 flex items-center justify-between">
+                      <div className="flex items-center">
+                        <Home size={20} className="text-gray-500 mr-2" />
+                        <span className="text-gray-700">Net Banking</span>
+                      </div>
+                      <div className="flex space-x-2">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/11/SBI-Logo.png" alt="SBI" className="h-6" />
+                        <img src="https://1000logos.net/wp-content/uploads/2021/10/HDFC-Bank-logo.png" alt="HDFC" className="h-6" />
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/ICICI_Bank_Logo.svg/2560px-ICICI_Bank_Logo.svg.png" alt="ICICI" className="h-6" />
+                      </div>
+                    </div>
                   </div>
+
                   
                   {/* <div className="mb-8 bg-gray-50 p-4 rounded-lg">
                     <div className="flex justify-between mb-3">

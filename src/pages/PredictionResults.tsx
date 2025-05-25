@@ -281,27 +281,27 @@
 //           </div>
           
 //           {/* Branch filter */}
-//           <div>
-//             <div className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent relative">
-//               <div className="flex items-center justify-between">
-//                 <div className="flex items-center">
-//                   <Filter size={18} className="text-gray-500 mr-2" />
-//                   <select 
-//                     value={selectedBranch}
-//                     onChange={(e) => setSelectedBranch(e.target.value)}
-//                     className="appearance-none bg-transparent focus:outline-none w-full"
-//                   >
-//                     {uniqueBranches.map((branch) => (
-//                       <option key={branch} value={branch}>
-//                         {branch === 'All' ? 'All Branches' : branch}
-//                       </option>
-//                     ))}
-//                   </select>
-//                 </div>
-//                 <ChevronDown size={18} className="text-gray-500" />
-//               </div>
-//             </div>
-//           </div>
+          // <div>
+          //   <div className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent relative">
+          //     <div className="flex items-center justify-between">
+          //       <div className="flex items-center">
+          //         <Filter size={18} className="text-gray-500 mr-2" />
+          //         <select 
+          //           value={selectedBranch}
+          //           onChange={(e) => setSelectedBranch(e.target.value)}
+          //           className="appearance-none bg-transparent focus:outline-none w-full"
+          //         >
+          //           {uniqueBranches.map((branch) => (
+          //             <option key={branch} value={branch}>
+          //               {branch === 'All' ? 'All Branches' : branch}
+          //             </option>
+          //           ))}
+          //         </select>
+          //       </div>
+          //       <ChevronDown size={18} className="text-gray-500" />
+          //     </div>
+          //   </div>
+          // </div>
           
 //           {/* Risk level filter */}
 //           <div>
@@ -523,6 +523,7 @@ import autoTable from 'jspdf-autotable';
 
 interface College {
   college: string;
+  code: string;
   branch: string;
   branchCode: string;
   closingRank: number;
@@ -549,39 +550,90 @@ const PredictionResults: React.FC = () => {
   const [isPDFModalOpen, setIsPDFModalOpen] = useState(false);
   const [reportName, setReportName] = useState('');
   const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadCount, setDownloadCount] = useState<number>(0);
+
 
   const { user } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
-
+ 
+  //pdf
   const generatePDF = () => {
-  if (filteredColleges.length === 0) {
-    showToast("No data available to export", "warning");
-    return;
-  }
+  // if (!user?.email) {
+  //   showToast("Please sign in to download the report", "warning");
+  //   return;
+  // }
 
-  const doc = new jsPDF();
-  doc.setFontSize(14);
-  doc.text('College Prediction Report', 14, 20);
-  doc.setFontSize(10);
+  // try {
+  //   const res = await fetch(`http://localhost:4000/api/user/download-count?email=${user.email}`);
+  //   const { isPremium, downloadCount } = await res.json();
 
-  const tableData = displayedColleges.map((college) => [
-    college.college,
-    college.branch,
-    college.branchCode,
-    college.closingRank.toString()
-  ]);
+  //   if (!isPremium) {
+  //     showToast("Please upgrade to premium to download the PDF", "warning");
+  //     return;
+  //   }
 
-  autoTable(doc, {
-    startY: 30,
-    head: [['College Name', 'Branch', 'Branch Code', 'Closing Rank']],
-    body: tableData,
-    styles: { fontSize: 9 },
-    headStyles: { fillColor: [100, 149, 237] },
-  });
+  //   if (downloadCount >= 3) {
+  //     showToast("You've reached your 3-download limit", "error");
+  //     return;
+  //   }
 
-  doc.save(`${reportName}.pdf`);
-  };
+    if (filteredColleges.length === 0) {
+      showToast("No data available to export", "warning");
+      return;
+    }
+
+    const doc = new jsPDF();
+    doc.setFontSize(14);
+    doc.text('College Prediction Report', 14, 20);
+    doc.setFontSize(10);
+
+    const tableData = displayedColleges.map((college) => [
+      college.college,
+      college.code,
+      college.branch,
+      college.branchCode,
+      college.closingRank.toString()
+    ]);
+
+    autoTable(doc, {
+      startY: 30,
+      head: [['College Name', 'College Code', 'Branch', 'Branch Code', 'Closing Rank']],
+      body: tableData,
+      styles: { fontSize: 9 },
+      headStyles: { fillColor: [100, 149, 237] },
+    });
+
+    doc.save(`${reportName}.pdf`);
+
+  //   await fetch('http://localhost:4000/api/user/increment-download', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ email: user.email }),
+  //   });
+
+  //   showToast(`PDF downloaded (${downloadCount + 1}/3)`, "success");
+
+  // } catch (error) {
+  //   showToast("Something went wrong while generating the PDF", "error");
+  //   console.error(error);
+  // }
+};
+
+
+//   useEffect(() => {
+//   if (user?.email) {
+//     fetch('http://localhost:4000/api/user/init', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({
+//         email: user.email,
+//         isPremium: user.isPremium, // Assume from Cognito or local logic
+//       }),
+//     });
+//   }
+// }, [user]);
+
 
   useEffect(() => {
     document.title = 'College Predictions - CollegePredict360';
@@ -688,6 +740,9 @@ const PredictionResults: React.FC = () => {
                     College Name
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    College Code
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Branch
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -701,10 +756,11 @@ const PredictionResults: React.FC = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {displayedColleges.map((college, idx) => (
                   <tr key={idx} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{college.college}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">{college.college}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{college.code}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{college.branch}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{college.branchCode}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{college.closingRank}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-semibold">{college.closingRank}</td>
                   </tr>
                 ))}
               </tbody>
