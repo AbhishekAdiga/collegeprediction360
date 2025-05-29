@@ -144,7 +144,8 @@ const PremiumPage: React.FC = () => {
   setIsProcessing(true);
 //const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/payment/create-order`, {
   try {
-    const res = await fetch(`http://localhost:4000/api/payment/create-order`, {
+    //`http://localhost:4000/api/payment/create-order` -- for local testing
+    const res = await fetch(`https://collegepredict-backend.onrender.com/api/payment/create-order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -163,7 +164,8 @@ const PremiumPage: React.FC = () => {
       order_id: order.id,
       handler: async function (response: any) {
         try {
-          const verifyRes = await fetch(`http://localhost:4000/api/payment/verify`, {
+          //`http://localhost:4000/api/payment/verify` -- for local testing
+          const verifyRes = await fetch(`https://collegepredict-backend.onrender.com/api/payment/verify`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
