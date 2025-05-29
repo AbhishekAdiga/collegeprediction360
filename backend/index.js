@@ -15,7 +15,10 @@ const PORT = 4000;
 
 //app.use(cors());
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173', // local dev
+    'https://collegepredict-frontend.onrender.com' // deployed frontend
+  ],
   credentials: true,
 }));
 
@@ -76,6 +79,7 @@ app.use(express.json());
 //   user.downloadCount += 1;
 //   return res.json({ message: 'Download count updated', downloadCount: user.downloadCount });
 // });
+
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
@@ -155,46 +159,46 @@ app.get('/api/predict', async (req, res) => {
   }
 });
 
-app.post('/api/send-otp', async (req, res) => {
-  const { email } = req.body;
-  if (!email) return res.status(400).json({ error: 'Email is required' });
+// app.post('/api/send-otp', async (req, res) => {
+//   const { email } = req.body;
+//   if (!email) return res.status(400).json({ error: 'Email is required' });
 
-  const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
-  const expiresAt = Date.now() + 5 * 60 * 1000; // 5 mins
+//   const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+//   const expiresAt = Date.now() + 5 * 60 * 1000; // 5 mins
 
-  otpStore.set(email, { otp, expiresAt });
+//   otpStore.set(email, { otp, expiresAt });
 
-  try {
-    await transporter.sendMail({
-      from: '"CP360 Auth" <your-email@gmail.com>',
-      to: email,
-      subject: 'Your OTP Code',
-      text: `Your OTP is: ${otp}`,
-    });
+//   try {
+//     await transporter.sendMail({
+//       from: '"CP360 Auth" <your-email@gmail.com>',
+//       to: email,
+//       subject: 'Your OTP Code',
+//       text: `Your OTP is: ${otp}`,
+//     });
 
-    res.json({ message: 'OTP sent' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to send email' });
-  }
-});
+//     res.json({ message: 'OTP sent' });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Failed to send email' });
+//   }
+// });
 
-app.post('/api/verify-otp', (req, res) => {
-  const { email, otp } = req.body;
-  if (!email || !otp) return res.status(400).json({ error: 'Email and OTP are required' });
+// app.post('/api/verify-otp', (req, res) => {
+//   const { email, otp } = req.body;
+//   if (!email || !otp) return res.status(400).json({ error: 'Email and OTP are required' });
 
-  const record = otpStore.get(email);
-  if (!record) return res.status(400).json({ error: 'No OTP found for this email' });
+//   const record = otpStore.get(email);
+//   if (!record) return res.status(400).json({ error: 'No OTP found for this email' });
 
-  if (record.otp !== otp) return res.status(401).json({ error: 'Invalid OTP' });
-  if (Date.now() > record.expiresAt) {
-    otpStore.delete(email);
-    return res.status(401).json({ error: 'OTP expired' });
-  }
+//   if (record.otp !== otp) return res.status(401).json({ error: 'Invalid OTP' });
+//   if (Date.now() > record.expiresAt) {
+//     otpStore.delete(email);
+//     return res.status(401).json({ error: 'OTP expired' });
+//   }
 
-  otpStore.delete(email); // Optional: prevent reuse
-  res.json({ message: 'OTP verified' });
-});
+//   otpStore.delete(email); // Optional: prevent reuse
+//   res.json({ message: 'OTP verified' });
+// });
 
 app.post('/api/payment/create-order', async (req, res) => {
   try {
