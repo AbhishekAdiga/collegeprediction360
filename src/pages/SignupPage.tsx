@@ -242,6 +242,16 @@ import Input from '../components/ui/Input';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 
+const referralColleges = [
+  "IIT Bombay",
+  "IIT Delhi",
+  "NIT Trichy",
+  "BITS Pilani",
+  "IIIT Hyderabad",
+  "JNTU Hyderabad",
+  "Other"
+];
+
 const SignupPage: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -349,6 +359,33 @@ const SignupPage: React.FC = () => {
                 leftIcon={<Mail size={18} className="text-gray-500" />}
                 required
               />
+
+              {/* referal collages */}
+              {/* Referral colleges dropdown */}
+              <div className="space-y-1">
+                <label htmlFor="referralCollege" className="block text-sm font-medium text-gray-700">
+                  How did you hear about us?
+                </label>
+                <div className="relative">
+                  <select
+                    id="referralCollege"
+                    className="block w-full px-4 py-2.5 rounded-lg border border-gray-300 text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 appearance-none pr-10"
+                    style={{
+                      backgroundImage:
+                        "url(\"data:image/svg+xml,%3Csvg fill='%236B7280' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E\")",
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 0.75rem center',
+                      backgroundSize: '1.25rem',
+                    }}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Select an option</option>
+                    {referralColleges.map((college, index) => (
+                      <option key={index} value={college}>{college}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
 
               <Input
                 label="Password"

@@ -368,9 +368,9 @@ const PremiumPage: React.FC = () => {
                         <span className="text-gray-700">UPI</span>
                       </div>
                       <div className="flex space-x-2">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/PhonePe_Logo.svg/512px-PhonePe_Logo.svg.png" alt="PhonePe" className="h-6" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Google_Pay_Logo.svg" alt="Google Pay" className="h-6" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Google_Pay_Logo.svg" alt="Paytm" className="h-6" />
+                        <img src="/Photos/download-phonepay.ico" alt="PhonePe" className="h-6" />
+                        <img src="/Photos/google-pay-india-Tez-new-icon.ico" alt="Google Pay" className="h-6" />
+                        <img src="/Photos/226448.ico" alt="Paytm" className="h-6" />
                       </div>
                     </div>
 
@@ -381,9 +381,9 @@ const PremiumPage: React.FC = () => {
                         <span className="text-gray-700">Net Banking</span>
                       </div>
                       <div className="flex space-x-2">
-                        <img src="https://logos-world.net/wp-content/uploads/2020/11/SBI-Logo.png" alt="SBI" className="h-6" />
-                        <img src="https://1000logos.net/wp-content/uploads/2021/10/HDFC-Bank-logo.png" alt="HDFC" className="h-6" />
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/ICICI_Bank_Logo.svg/2560px-ICICI_Bank_Logo.svg.png" alt="ICICI" className="h-6" />
+                        <img src="/Photos/SBI-logo.ico" alt="SBI" className="h-6" />
+                        <img src="/Photos/HDB-bb6241fe.ico" alt="HDFC" className="h-6" />
+                        <img src="/Photos/indian-overseas-bank-logo-png_seeklogo-423270.ico" alt="IOB" className="h-6" />
                       </div>
                     </div>
                   </div>

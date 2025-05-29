@@ -41,17 +41,6 @@ const testimonials = [
   }
 ];
 
-const referralColleges = [
-  "IIT Bombay",
-  "IIT Delhi",
-  "NIT Trichy",
-  "BITS Pilani",
-  "IIIT Hyderabad",
-  "JNTU Hyderabad",
-  "Other"
-];
-
-
 const LandingPage: React.FC = () => {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
@@ -87,37 +76,7 @@ const LandingPage: React.FC = () => {
                 Enter your rank and get a personalized list of top 60 colleges based on real data.
                 No more guesswork, just data-driven college predictions.
               </p>
-
-              {/* referal collages */}
-              {/* Referral colleges dropdown */}
-              <div className="mb-6">
-                <label htmlFor="referralCollege" className="block text-sm font-medium text-white mb-2">
-                  How did you hear about us?
-                </label>
-                <select
-                  id="referralCollege"
-                  className="w-full sm:w-80 px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 appearance-none pr-10"
-                  style={{
-                    backgroundImage:
-                      "url(\"data:image/svg+xml,%3Csvg fill='%239C27B0' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E\")",
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'right 0.75rem center',
-                    backgroundSize: '1.5rem',
-                  }}
-                  defaultValue=""
-                >
-                  <option value="" disabled>
-                    Select an option
-                  </option>
-                  {referralColleges.map((college, index) => (
-                    <option key={index} value={college}>
-                      {college}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-
+              
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link to={isAuthenticated ? "/predictor" : "/signup"}>
                   <Button size="lg" variant="primary" className="w-full sm:w-auto">
