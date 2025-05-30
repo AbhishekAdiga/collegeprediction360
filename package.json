@@ -8,9 +8,10 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
-    "start" : "vite preview"
+    "start": "vite preview"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.31.8",
     "@headlessui/react": "^1.7.17",
     "axios": "^1.9.0",
     "bcryptjs": "^3.0.2",

@@ -111,6 +111,21 @@ const plans = [
     cta: 'Choose Pro',
     popular: true,
     reports: 3 // updated from 'unlimited'
+  },
+  {
+    id: 'direct',
+    name: 'Direct Management Admission',
+    price: '₹249',
+    description: 'Ideal for those who didn’t qualify for EAMCET',
+    features: [
+      'Get direct contact',
+      'No broker',
+      'Spot admission',
+      'Recommendation letter',
+      'No donation fees'
+    ],
+    cta: 'Choose Direct',
+    popular: false
   }
 ];
 
@@ -140,32 +155,101 @@ const PremiumPage: React.FC = () => {
   //   }, 2000);
   // };
 
+//   const handleUpgrade = async () => {
+//   setIsProcessing(true);
+// //const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/payment/create-order`, {
+//   try {
+//     //`http://localhost:4000/api/payment/create-order` -- for local testing
+//     const res = await fetch(`http://localhost:4000/api/payment/create-order`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({ amount: 69 })
+//     });
+
+//     const order = await res.json();
+//       //key: import.meta.env.VITE_RAZORPAY_KEY_ID, //*************************************************** */
+//     const options = {
+//       key: 'rzp_test_Xq2DEua96W6DvU',
+//       amount: order.amount,
+//       currency: order.currency,
+//       name: 'CollegePredict360',
+//       description: `${selectedPlan} Plan Purchase`,
+//       order_id: order.id,
+//       handler: async function (response: any) {
+//         try {
+//           //`http://localhost:4000/api/payment/verify` -- for local testing
+//           const verifyRes = await fetch(`http://localhost:4000/api/payment/verify`, {
+//             method: 'POST',
+//             headers: {
+//               'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({
+//               razorpay_order_id: order.id,
+//               razorpay_payment_id: response.razorpay_payment_id,
+//               razorpay_signature: response.razorpay_signature,
+//             }),
+//           });
+
+//           const verifyData = await verifyRes.json();
+
+//           if (verifyRes.ok) {
+//             upgradeAccount();
+//             showToast('Payment verified successfully! You are now a premium member.', 'success');
+//             navigate('/dashboard');
+//           } else {
+//             showToast(`Verification failed: ${verifyData.error}`, 'error');
+//           }
+//         } catch (error) {
+//           showToast('Something went wrong during verification. Please try again.', 'error');
+//         }
+//       },
+//       prefill: {
+//         name: user?.name || '',
+//         email: user?.email || ''
+//       },
+//       theme: {
+//         color: '#6366f1'
+//       }
+//     };
+
+//     const rzp = new (window as any).Razorpay(options);
+//         rzp.open();
+//       } catch (err) {
+//         showToast('Payment failed. Please try again.', 'error');
+//       } finally {
+//         setIsProcessing(false);
+//       }
+//     };
+
   const handleUpgrade = async () => {
   setIsProcessing(true);
-//const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/payment/create-order`, {
+  
+
   try {
-    //`http://localhost:4000/api/payment/create-order` -- for local testing
-    const res = await fetch(`https://collegepredict-backend.onrender.com/api/payment/create-order`, {
+    const amount = selectedPlan === 'direct' ? 249 : 69;
+
+    const res = await fetch(`http://localhost:4000/api/payment/create-order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ amount: 69 })
+      body: JSON.stringify({ amount })
     });
 
     const order = await res.json();
-      //key: import.meta.env.VITE_RAZORPAY_KEY_ID, //*************************************************** */
+
     const options = {
       key: 'rzp_test_Xq2DEua96W6DvU',
       amount: order.amount,
       currency: order.currency,
       name: 'CollegePredict360',
-      description: `${selectedPlan} Plan Purchase`,
+      description: `${selectedPlan === 'direct' ? 'Direct Admission Plan' : 'Pro Plan'} Purchase`,
       order_id: order.id,
       handler: async function (response: any) {
         try {
-          //`http://localhost:4000/api/payment/verify` -- for local testing
-          const verifyRes = await fetch(`https://collegepredict-backend.onrender.com/api/payment/verify`, {
+          const verifyRes = await fetch(`http://localhost:4000/api/payment/verify`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -180,9 +264,13 @@ const PremiumPage: React.FC = () => {
           const verifyData = await verifyRes.json();
 
           if (verifyRes.ok) {
-            upgradeAccount();
-            showToast('Payment verified successfully! You are now a premium member.', 'success');
-            navigate('/dashboard');
+            if (selectedPlan === 'direct') {
+              window.location.href = 'https://forms.gle/yRhmvGixjH4rZZwV7'; // Redirect to Google Form for Direct Admission
+            } else {
+              upgradeAccount();
+              showToast('Payment verified successfully! You are now a premium member.', 'success');
+              navigate('/dashboard');
+            }
           } else {
             showToast(`Verification failed: ${verifyData.error}`, 'error');
           }
@@ -200,13 +288,14 @@ const PremiumPage: React.FC = () => {
     };
 
     const rzp = new (window as any).Razorpay(options);
-        rzp.open();
-      } catch (err) {
-        showToast('Payment failed. Please try again.', 'error');
-      } finally {
-        setIsProcessing(false);
-      }
-    };
+    rzp.open();
+
+  } catch (err) {
+    showToast('Payment failed. Please try again.', 'error');
+  } finally {
+    setIsProcessing(false);
+  }
+};
 
   
   // Feature check/cross icon component
@@ -284,7 +373,7 @@ const PremiumPage: React.FC = () => {
               
               {/* Pricing cards */}
               {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"> */}
-              <div className="flex justify-center mx-auto px-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {plans.map((plan) => (
                   <div 
                     key={plan.id}
@@ -341,7 +430,7 @@ const PremiumPage: React.FC = () => {
                       Payment Details
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      You'll be charged a one-time payment of ₹69 for the Pro plan.
+                      You'll be charged a one-time payment of ₹{selectedPlan === 'direct' ? 249 : 69} for the {selectedPlan === 'direct' ? 'Direct Admission' : 'Pro'} plan.
                     </p>
                   </div>
                   
@@ -406,7 +495,7 @@ const PremiumPage: React.FC = () => {
                     </div>
                   </div> */}
 
-                  <div className="mb-8 bg-gray-50 p-4 rounded-lg">
+                  {/* <div className="mb-8 bg-gray-50 p-4 rounded-lg">
                     <div className="flex justify-between mb-3">
                       <span className="text-gray-600">Plan</span>
                       <span className="font-medium">'Pro'</span>
@@ -419,8 +508,28 @@ const PremiumPage: React.FC = () => {
                       <span className="font-medium">Total (One-time)</span>
                       <span className="font-bold text-lg">₹69</span>
                     </div>
+                  </div> */}
+                  <div className="mb-8 bg-gray-50 p-4 rounded-lg">
+                    <div className="flex justify-between mb-3">
+                      <span className="text-gray-600">Plan</span>
+                      <span className="font-medium">
+                        {selectedPlan === 'direct' ? 'Direct Management Admission' : 'Pro'}
+                      </span>
+                    </div>
+                    {selectedPlan !== 'direct' && (
+                      <div className="flex justify-between mb-3">
+                        <span className="text-gray-600">Reports</span>
+                        <span className="font-medium">3 reports</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between pt-3 border-t border-gray-200">
+                      <span className="font-medium">Total (One-time)</span>
+                      <span className="font-bold text-lg">
+                        {selectedPlan === 'direct' ? '₹249' : '₹69'}
+                      </span>
+                    </div>
                   </div>
-                  
+
                   <Button
                     variant="primary"
                     fullWidth

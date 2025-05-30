@@ -232,6 +232,8 @@
 
 // export default SignupPage;
 
+/////////////////////////////////////////////////////////////////
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, AlertCircle, CheckCircle2 } from 'lucide-react';
@@ -490,3 +492,14 @@ const SignupPage: React.FC = () => {
 };
 
 export default SignupPage;
+
+// src/pages/Signup.tsx
+// import { SignUp } from "@clerk/clerk-react";
+
+// export default function Signup() {
+//   return (
+//     <div className="flex justify-center items-center h-screen">
+//       <SignUp path="/signup" routing="path" />
+//     </div>
+//   );
+// }

@@ -111,3 +111,18 @@
 .risk-risky {
   @apply text-error-600 bg-error-50 border-error-200;
 }
+
+@keyframes fadeVideos {
+  0%, 33.33% {
+    opacity: 1;
+  }
+  33.34%, 100% {
+    opacity: 0;
+  }
+}
+
+.fade-video {
+  opacity: 0;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}

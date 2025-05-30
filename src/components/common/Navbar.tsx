@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
                   : 'text-white'
               }`}
             />
-            <span 
+            {/* <span 
               className={`text-xl font-bold ${
                 isScrolled || location.pathname !== '/' 
                   ? 'text-gray-800' 
@@ -54,7 +54,27 @@ const Navbar: React.FC = () => {
               }`}
             >
               CollegePredict360
-            </span>
+            </span> */}
+            <div className="flex flex-col leading-tight">
+              <span 
+                className={`text-xl font-bold ${
+                  isScrolled || location.pathname !== '/' 
+                    ? 'text-gray-800' 
+                    : 'text-white'
+                }`}
+              >
+                CollegePredict360
+              </span>
+              <span 
+                className={`text-sm ${
+                  isScrolled || location.pathname !== '/' 
+                    ? 'text-gray-500' 
+                    : 'text-white'
+                }`}
+              >
+                TechM4India
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

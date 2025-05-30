@@ -168,3 +168,14 @@ const LoginPage: React.FC = () => {
 };
 
 export default LoginPage;
+
+// src/pages/Login.tsx
+// import { SignIn } from "@clerk/clerk-react";
+
+// export default function LoginPage() {
+//   return (
+//     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+//       <SignIn path="/login" routing="path"/>
+//     </div>
+//   );
+// }

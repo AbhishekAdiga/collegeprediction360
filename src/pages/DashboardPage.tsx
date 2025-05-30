@@ -64,12 +64,19 @@ const DashboardPage: React.FC = () => {
       color: 'bg-accent-50'
     },
     {
+      title: 'Direct Management Admission',
+      description: 'Get direct contact • No broker • Spot admission • Recommendation letter • No donation fees. Ideal for those who didn’t qualify for EAMCET.',
+      icon: <GraduationCap size={28} className="text-primary-600" />,
+      path: '/premium',
+      color: 'bg-pink-50'
+    },
+    {
       title: 'Contact Support',
       description: 'Need help? Our support team is ready to assist you',
       icon: <LifeBuoy size={28} className="text-success-600" />,
       path: '/support',
       color: 'bg-success-50'
-    }
+    },
   ];
 
   return (

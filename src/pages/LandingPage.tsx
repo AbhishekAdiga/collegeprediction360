@@ -13,6 +13,7 @@ import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
 import Button from '../components/ui/Button';
 import { useAuth } from '../contexts/AuthContext';
+//import { useUser } from '@clerk/clerk-react'; // ✅ Clerk import
 import { useLocation } from 'react-router-dom';
 
 
@@ -43,6 +44,7 @@ const testimonials = [
 
 const LandingPage: React.FC = () => {
   const { isAuthenticated } = useAuth();
+  //const { isSignedIn } = useUser(); // ✅ Clerk hook
   const location = useLocation();
 
 
@@ -64,7 +66,7 @@ const LandingPage: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      {/* Hero Section */}
+      {/* Hero Section
       <section id="home" className="pt-24 pb-40 md:pt-32 md:pb-52 gradient-bg relative z-10">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -100,12 +102,99 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
         {/* Wave Separator */}
-        <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
+        {/* <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#f9fafb" fillOpacity="1" d="M0,96L80,106.7C160,117,320,139,480,138.7C640,139,800,117,960,117.3C1120,117,1280,139,1360,149.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
           </svg>
         </div>
-      </section>
+      </section> */} 
+
+      {/* Hero Section */}
+        <section id="home" className="relative w-full h-screen overflow-hidden flex flex-col justify-between">
+          {/* Video Carousel Background */}
+          <div className="absolute inset-0 z-0">
+            <div className="w-full h-full absolute top-0 left-0">
+              <video 
+                key="video1" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className="w-full h-full object-cover absolute fade-video z-0"
+                style={{ animation: 'fadeVideos 30s infinite' }}
+              >
+                <source src="/videos/video1.mp4" type="video/mp4" />
+              </video>
+              <video 
+                key="video2" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className="w-full h-full object-cover absolute fade-video z-0"
+                style={{ animation: 'fadeVideos 30s infinite 10s' }}
+              >
+                <source src="/videos/video2.mp4" type="video/mp4" />
+              </video>
+              <video 
+                key="video3" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className="w-full h-full object-cover absolute fade-video z-0"
+                style={{ animation: 'fadeVideos 30s infinite 20s' }}
+              >
+                <source src="/videos/video3.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div className="absolute inset-0 bg-black/50 z-10" />
+          </div>
+
+          {/* Foreground Content */}
+          <div className="container-custom relative z-20 flex-1 flex items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-white">
+              <div className="animate-fade-in">
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                  Predict Your Perfect College in Seconds!
+                </h1>
+                <p className="text-xl opacity-90 mb-8">
+                  Enter your rank and get a personalized list of top 60 colleges based on real data.
+                  No more guesswork, just data-driven college predictions.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                  <Link to={isAuthenticated ? "/predictor" : "/signup"}>
+                    <Button size="lg" variant="primary" className="w-full sm:w-auto">
+                      Start Now
+                    </Button>
+                  </Link>
+                  <Link to="/premium">
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/10">
+                      View Plans
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              {/* <div className="hidden md:block">
+                <img 
+                  src="https://images.pexels.com/photos/3769138/pexels-photo-3769138.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                  alt="Students celebrating college admission" 
+                  className="rounded-lg shadow-xl transform -rotate-2 animate-fade-in -mb-14"
+                />
+              </div> */}
+            </div>
+          </div>
+
+          {/* Optional wave separator */}
+          {/* <div className="absolute bottom-0 left-0 right-0 pointer-events-none z-20">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+              <path fill="#f9fafb" fillOpacity="1" d="M0,96L80,106.7C160,117,320,139,480,138.7C640,139,800,117,960,117.3C1120,117,1280,139,1360,149.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+            </svg>
+          </div> */}
+          
+        </section>
+
 
       {/* How It Works Section */}
       <section className="pt-32 py-16 bg-gray-50" id="how-it-works">

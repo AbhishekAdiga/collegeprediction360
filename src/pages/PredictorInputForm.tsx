@@ -11,14 +11,21 @@ const BRANCH_CODE_MAP: { [key: string]: string } = {
   'Computer Science Engineering (CSE)': 'CSE',
   'Electronics & Communication (ECE)': 'ECE',
   'Electrical & Electronics (EEE)': 'EEE',
-  'Mechanical Engineering': 'ME',
-  'Civil Engineering': 'CE',
-  'Information Technology (IT)': 'IT',
+  'Mechanical Engineering': 'MEC',
+  'Civil Engineering': 'CIV',
+  'Information Technology (IT)': 'INF',
   'Chemical Engineering': 'CHE',
-  'Biotechnology': 'BT',
-  'Aeronautical Engineering': 'AE',
-  'Artificial Intelligence & ML': 'AI&ML',
-  'Data Science': 'DS',
+  'Biotechnology': 'BIO',
+  'Aeronautical Engineering': 'ANE',
+  'Artificial Intelligence & ML': 'AIM',
+  'Data Science': 'CSD',
+  'Computer science and Machine Learning (CSM)': 'CSM',
+  'Bio medical engineering': 'BME',
+  'Computer science and design': 'CSG',
+  'Electronics and telematics': 'ETM',  
+  'Computer science and busines system': 'CSB',
+  'Computer science Engineering(IOT)': 'CSO',
+  'Metallurgical Engineering': 'MET',
 };
 
 
@@ -38,7 +45,14 @@ const BRANCHES = [
   'Biotechnology',
   'Aeronautical Engineering',
   'Artificial Intelligence & ML',
-  'Data Science'
+  'Data Science',
+  'Computer science and Machine Learning (CSM)',
+  'Bio medical engineering',
+  'Computer science and design',
+  'Electronics and telematics',
+  'Computer science and busines system',
+  'Computer science Engineering(IOT)',
+  'Metallurgical Engineering',
 ];
 
 interface FormData {
@@ -312,6 +326,7 @@ const PredictorInputForm: React.FC = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Preferred Branches*
               </label>
+              <p className="text-xs text-gray-500 mb-1">Please search and select each branch separately for accurate results.</p>
               {errors.branches && (
                 <p className="text-error-600 text-sm mb-1">{errors.branches}</p>
               )}
@@ -330,8 +345,8 @@ const PredictorInputForm: React.FC = () => {
               </div>
             </div>
             
-            {/* Preferred Colleges */}
-            <div className="mt-6">
+            {/* Preferred Colleges*/}
+            {/* <div className="mt-6">
               <label htmlFor="preferredColleges" className="block text-sm font-medium text-gray-700 mb-1">
                 Preferred Colleges (Optional)
               </label>
@@ -344,10 +359,10 @@ const PredictorInputForm: React.FC = () => {
                 placeholder="Enter names of specific colleges you're interested in (e.g., JNTU, VIT, etc.)"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               ></textarea>
-            </div>
+            </div> */}
             
             {/* Email */}
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <Input
                 label="Email (Optional)"
                 type="email"
@@ -358,8 +373,41 @@ const PredictorInputForm: React.FC = () => {
                 placeholder="To receive your prediction report by email"
                 helperText="We'll never share your email with anyone else."
               />
+            </div> */}
+             
+             {/* Advertisement Videos Section */}
+             <div className="mt-6">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Sponsored Video
+              </label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="rounded-lg shadow-md w-full max-h-64 object-cover"
+                  controls={false}
+                >
+                  <source src="/videos/video1.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="rounded-lg shadow-md w-full max-h-64 object-cover"
+                  controls={false}
+                >
+                  <source src="/videos/video3.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </div>
-            
+
+
             <div className="mt-8 flex justify-end">
               <Button
                 type="submit"
@@ -367,10 +415,19 @@ const PredictorInputForm: React.FC = () => {
                 size="lg"
                 isLoading={isSubmitting}
               >
-                Get My College Predictions
+                Get My Web Options List
               </Button>
             </div>
           </form>
+          <div className="flex items-start space-x-3 p-4 bg-primary-50 rounded-lg mb-6 mt-10">
+            <Info size={24} className="text-primary-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-gray-600 text-sm">
+                <span className="font-semibold text-gray-700">Disclaimer : </span>
+                This College Predictor Counselling Report is generated based on last year's college and branch-wise cut-off data of B.Tech & TS EAMCET counselling. Experts at mycollegepredictor have evaluated the colleges on multiple parameters to provide this result. We are committed to offering unbiased advice to students. However, mycollegepredictor makes no guarantee that you will definitely secure admission in the predicted branch/college, as actual outcomes depend on preferences exercised by thousands of students during the real-time counselling process. By subscribing to this report, you acknowledge and accept that mycollegepredictor is serving purely an advisory role and that all final decisions are yours. mycollegepredictor will not be held responsible for any of your decisions, actions, or their consequences.
+              </p>
+            </div>
+          </div>
         </Card>
       </div>
     </DashboardLayout>
