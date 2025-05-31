@@ -241,7 +241,8 @@ const PremiumPage: React.FC = () => {
     const order = await res.json();
 
     const options = {
-      key: 'rzp_test_Xq2DEua96W6DvU',
+      //key: 'rzp_test_Xq2DEua96W6DvU',
+      key: import.meta.env.VITE_RAZORPAY_KEY,
       amount: order.amount,
       currency: order.currency,
       name: 'CollegePredict360',
