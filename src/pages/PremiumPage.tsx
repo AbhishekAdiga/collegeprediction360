@@ -230,7 +230,7 @@ const PremiumPage: React.FC = () => {
   try {
     const amount = selectedPlan === 'direct' ? 249 : 69;
 
-    const res = await fetch(`http://collegepredict-backend.onrender.com/api/payment/create-order`, {
+    const res = await fetch(`https://collegepredict-backend.onrender.com/api/payment/create-order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
