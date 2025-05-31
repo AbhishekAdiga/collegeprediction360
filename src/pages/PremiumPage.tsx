@@ -229,7 +229,7 @@ const PremiumPage: React.FC = () => {
 
   try {
     const amount = selectedPlan === 'direct' ? 249 : 69;
-
+    //http://localhost:4000
     const res = await fetch(`https://collegepredict-backend.onrender.com/api/payment/create-order`, {
       method: 'POST',
       headers: {
@@ -322,7 +322,7 @@ const PremiumPage: React.FC = () => {
             </p>
           </div>
           
-          {user?.isPremium ? (
+          {/* {user?.isPremium ? (
             <Card className="max-w-3xl mx-auto p-8 text-center">
               <div className="mb-6 mx-auto w-16 h-16 rounded-full bg-success-100 flex items-center justify-center">
                 <Check size={32} className="text-success-600" />
@@ -339,7 +339,7 @@ const PremiumPage: React.FC = () => {
                 </Button>
               </Link>
             </Card>
-          ) : (
+          ) : ( */}
             <>
               {/* Feature comparison table */}
               <div className="max-w-3xl mx-auto mb-12 overflow-hidden rounded-xl shadow-sm">
@@ -443,7 +443,7 @@ const PremiumPage: React.FC = () => {
                     <div className="border border-gray-300 rounded-lg p-4 flex items-center justify-between mb-4">
                       <div className="flex items-center">
                         <CreditCard size={20} className="text-gray-500 mr-2" />
-                        <span className="text-gray-700">Credit / Debit Card</span>
+                        <span className="text-gray-700">Credit / Debit Card / UPI / Net Banking</span>
                       </div>
                       <div className="flex space-x-2">
                         <img src="https://cdn-icons-png.flaticon.com/128/196/196578.png" alt="Visa" className="h-6" />
@@ -453,7 +453,7 @@ const PremiumPage: React.FC = () => {
                     </div>
 
                     {/* UPI */}
-                    <div className="border border-gray-300 rounded-lg p-4 flex items-center justify-between mb-4">
+                    {/* <div className="border border-gray-300 rounded-lg p-4 flex items-center justify-between mb-4">
                       <div className="flex items-center">
                         <QrCode size={20} className="text-gray-500 mr-2" />
                         <span className="text-gray-700">UPI</span>
@@ -463,10 +463,10 @@ const PremiumPage: React.FC = () => {
                         <img src="/Photos/google-pay-india-Tez-new-icon.ico" alt="Google Pay" className="h-6" />
                         <img src="/Photos/226448.ico" alt="Paytm" className="h-6" />
                       </div>
-                    </div>
+                    </div> */}
 
                     {/* Netbanking */}
-                    <div className="border border-gray-300 rounded-lg p-4 flex items-center justify-between">
+                    {/* <div className="border border-gray-300 rounded-lg p-4 flex items-center justify-between">
                       <div className="flex items-center">
                         <Home size={20} className="text-gray-500 mr-2" />
                         <span className="text-gray-700">Net Banking</span>
@@ -476,7 +476,7 @@ const PremiumPage: React.FC = () => {
                         <img src="/Photos/HDB-bb6241fe.ico" alt="HDFC" className="h-6" />
                         <img src="/Photos/indian-overseas-bank-logo-png_seeklogo-423270.ico" alt="IOB" className="h-6" />
                       </div>
-                    </div>
+                    </div> */}
                   </div>
 
                   
@@ -545,10 +545,10 @@ const PremiumPage: React.FC = () => {
                 </Card>
               </div>
             </>
-          )}
+          {/* )} */}
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );

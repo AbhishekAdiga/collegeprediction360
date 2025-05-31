@@ -31,7 +31,7 @@ const BRANCH_CODE_MAP: { [key: string]: string } = {
 
 // Form options
 const EXAM_TYPES = ['EAMCET', 'JEE Mains'];
-const CATEGORIES = ['OC', 'BC-A', 'BC-B', 'BC-C', 'BC-D', 'BC-E', 'SC', 'ST'];
+const CATEGORIES = ['OC', 'BC_A', 'BC_B', 'BC_C', 'BC_D', 'BC_E', 'SC', 'ST'];
 const REGIONS = ['OU', 'AU', 'SVU'];
 const ACADEMIC_YEARS = ['2025-26', '2024-25', '2023-24'];
 const BRANCHES = [
@@ -389,7 +389,7 @@ const PredictorInputForm: React.FC = () => {
                   className="rounded-lg shadow-md w-full max-h-64 object-cover"
                   controls={false}
                 >
-                  <source src="/videos/video1.mp4" type="video/mp4" />
+                  <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
 
@@ -401,7 +401,7 @@ const PredictorInputForm: React.FC = () => {
                   className="rounded-lg shadow-md w-full max-h-64 object-cover"
                   controls={false}
                 >
-                  <source src="/videos/video3.mp4" type="video/mp4" />
+                  <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>

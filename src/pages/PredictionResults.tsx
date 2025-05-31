@@ -509,7 +509,9 @@ import {
   Download,
   Lock,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  GraduationCap, 
+  FileText
 } from 'lucide-react';
 import DashboardLayout from '../components/dashboard/DashboardLayout';
 import Card from '../components/ui/Card';
@@ -771,6 +773,77 @@ const PredictionResults: React.FC = () => {
             </table>
           </div>
         </Card>
+
+        {/* Premium Upgrade Banner (If not premium) */}
+          {!user?.isPremium && (
+            <div className="mt-6 p-6 bg-gradient-to-r from-primary-50 to-secondary-50 rounded-lg border border-primary-100">
+              <div className="flex flex-col md:flex-row justify-between items-center">
+                <div className="mb-4 md:mb-0">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-1">Upgrade to Download Reports</h3>
+                  <p className="text-gray-600">
+                    Get full access to all 60 collage matches, download PDF reports and unlock all premium features.
+                  </p>
+                </div>
+                <Link to="/premium">
+                  <Button variant="primary">
+                    Upgrade to Premium
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          )}
+
+        {/* Recent Activity (or Premium Upgrade) */}
+        {/* {!user?.isPremium ? (
+          <Card className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="mb-4 md:mb-0">
+                <h3 className="text-xl font-bold mb-2">Upgrade to Premium</h3>
+                <p className="opacity-90">
+                  Get access to all 60 college matches, PDF downloads, and more.
+                </p>
+              </div>
+              <Link to="/premium">
+                <Button 
+                  size="lg" 
+                  className="bg-primary-600 text-white hover:bg-white hover:text-primary-600 border border-primary-600 transition-colors duration-200 shadow-md hover:shadow-lg focus:ring-4 focus:ring-primary-300"
+                >
+                  View Premium Plans
+                </Button>
+              </Link>
+            </div>
+          </Card>
+        ) : (
+          <div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h3>
+            <Card>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="mr-4 p-2 rounded-full bg-primary-100 text-primary-600">
+                    <GraduationCap size={20} />
+                  </div>
+                  <div>
+                    <p className="font-medium">College prediction created</p>
+                    <p className="text-sm text-gray-500">
+                      EAMCET Rank 4512, CSE preference - April 25, 2025
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="mr-4 p-2 rounded-full bg-secondary-100 text-secondary-600">
+                    <FileText size={20} />
+                  </div>
+                  <div>
+                    <p className="font-medium">PDF report downloaded</p>
+                    <p className="text-sm text-gray-500">
+                      EAMCET_4512_Report.pdf - April 25, 2025
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        )} */}
       </div>
     </DashboardLayout>
   );
