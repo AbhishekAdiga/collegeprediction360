@@ -230,7 +230,7 @@ const PremiumPage: React.FC = () => {
   try {
     const amount = selectedPlan === 'direct' ? 249 : 69;
 
-    const res = await fetch(`http://localhost:4000/api/payment/create-order`, {
+    const res = await fetch(`http://collegepredict-backend.onrender.com/api/payment/create-order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -249,7 +249,7 @@ const PremiumPage: React.FC = () => {
       order_id: order.id,
       handler: async function (response: any) {
         try {
-          const verifyRes = await fetch(`http://localhost:4000/api/payment/verify`, {
+          const verifyRes = await fetch(`http://collegepredict-backend.onrender.com/api/payment/verify`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

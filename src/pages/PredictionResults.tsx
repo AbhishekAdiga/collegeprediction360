@@ -654,8 +654,8 @@ const PredictionResults: React.FC = () => {
     const fetchPredictedColleges = async () => {
       try {
         const res = await fetch(
-          `http://localhost:4000/api/predict?rank=${parsedData.rank}&category=${parsedData.category}&branchCode=${parsedData.branches?.[0] || 'CSE'}`
-           //`https://collegepredict-backend.onrender.com/api/predict?rank=${parsedData.rank}&category=${parsedData.category}&branchCode=${parsedData.branches?.[0] || 'CSE'}`
+          //`http://localhost:4000/api/predict?rank=${parsedData.rank}&category=${parsedData.category}&branchCode=${parsedData.branches?.[0] || 'CSE'}`
+          `https://collegepredict-backend.onrender.com/api/predict?rank=${parsedData.rank}&category=${parsedData.category}&branchCode=${parsedData.branches?.[0] || 'CSE'}`
         );
         const data = await res.json();
         console.log("Fetched colleges:", data);  // <--- Debug here
