@@ -10,6 +10,10 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: 4173, // or just let Render use $PORT
-    allowedHosts: ['collegepredict-frontend.onrender.com']
+    allowedHosts: [
+      'collegepredict-frontend.onrender.com',
+      'mycollegepredictor.in',
+      'www.mycollegepredictor.in',
+    ],
   }
 });

@@ -584,8 +584,11 @@ const PredictionResults: React.FC = () => {
     }
 
     const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+
     doc.setFontSize(14);
-    doc.text('College Prediction Report', 14, 20);
+    doc.text('College Prediction Report', 14, 20); //Left side
+    doc.text('TechM4India', pageWidth - 14 - doc.getTextWidth('TechM4India'), 20); // Right side
     doc.setFontSize(10);
 
     const tableData = displayedColleges.map((college) => [
