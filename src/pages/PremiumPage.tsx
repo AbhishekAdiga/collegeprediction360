@@ -249,7 +249,7 @@ const PremiumPage: React.FC = () => {
       order_id: order.id,
       handler: async function (response: any) {
         try {
-          const verifyRes = await fetch(`http://collegepredict-backend.onrender.com/api/payment/verify`, {
+          const verifyRes = await fetch(`https://collegepredict-backend.onrender.com/api/payment/verify`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
