@@ -245,12 +245,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 
 const referralColleges = [
-  "IIT Bombay",
-  "IIT Delhi",
-  "NIT Trichy",
-  "BITS Pilani",
-  "IIIT Hyderabad",
-  "JNTU Hyderabad",
+  "Sri Guru junior college",
   "Other"
 ];
 
