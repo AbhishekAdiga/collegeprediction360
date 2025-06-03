@@ -99,7 +99,7 @@ const plans = [
   {
     id: 'pro',
     name: 'Pro',
-    price: '₹69', // updated from ₹99
+    price: '₹49', // updated from ₹69
     description: 'Best for college seekers',
     features: [
       '3 PDF Reports', // updated from Unlimited
@@ -228,7 +228,7 @@ const PremiumPage: React.FC = () => {
   
 
   try {
-    const amount = selectedPlan === 'direct' ? 249 : 69;
+    const amount = selectedPlan === 'direct' ? 249 : 49;
     //http://localhost:4000
     const res = await fetch(`https://collegepredict-backend.onrender.com/api/payment/create-order`, {
       method: 'POST',
@@ -431,7 +431,7 @@ const PremiumPage: React.FC = () => {
                       Payment Details
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      You'll be charged a one-time payment of ₹{selectedPlan === 'direct' ? 249 : 69} for the {selectedPlan === 'direct' ? 'Direct Admission' : 'Pro'} plan.
+                      You'll be charged a one-time payment of ₹{selectedPlan === 'direct' ? 249 : 49} for the {selectedPlan === 'direct' ? 'Direct Admission' : 'Pro'} plan.
                     </p>
                   </div>
                   
@@ -526,7 +526,7 @@ const PremiumPage: React.FC = () => {
                     <div className="flex justify-between pt-3 border-t border-gray-200">
                       <span className="font-medium">Total (One-time)</span>
                       <span className="font-bold text-lg">
-                        {selectedPlan === 'direct' ? '₹249' : '₹69'}
+                        {selectedPlan === 'direct' ? '₹249' : '₹49'}
                       </span>
                     </div>
                   </div>
