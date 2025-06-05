@@ -16,7 +16,7 @@ const PORT = 4000;
 //app.use(cors());
 app.use(cors({
   origin: [
-    'http://localhost:5173', // local dev
+    //'http://localhost:5173', // local dev
     'https://collegepredict-frontend.onrender.com', // deployed frontend
     'https://mycollegepredictor.in', // your new domain
     'https://www.mycollegepredictor.in' // if applicable

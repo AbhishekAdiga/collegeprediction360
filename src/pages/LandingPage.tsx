@@ -121,7 +121,7 @@ const LandingPage: React.FC = () => {
                 className="w-full h-full object-cover absolute fade-video z-0"
                 style={{ animation: 'fadeVideos 30s infinite' }}
               >
-                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4" />
+                <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" type="video/mp4" />
               </video>
               <video 
                 key="video2" 
@@ -132,7 +132,7 @@ const LandingPage: React.FC = () => {
                 className="w-full h-full object-cover absolute fade-video z-0"
                 style={{ animation: 'fadeVideos 30s infinite 10s' }}
               >
-                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4" />
+                <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" type="video/mp4" />
               </video>
               <video 
                 key="video3" 
@@ -143,7 +143,7 @@ const LandingPage: React.FC = () => {
                 className="w-full h-full object-cover absolute fade-video z-0"
                 style={{ animation: 'fadeVideos 30s infinite 20s' }}
               >
-                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" type="video/mp4" />
+                <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" type="video/mp4" />
               </video>
             </div>
             <div className="absolute inset-0 bg-black/50 z-10" />
