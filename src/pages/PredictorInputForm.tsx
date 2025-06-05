@@ -389,7 +389,7 @@ const PredictorInputForm: React.FC = () => {
                   className="rounded-lg shadow-md w-full max-h-64 object-cover"
                   controls={false}
                 >
-                  <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
+                  <source src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
 
@@ -401,7 +401,7 @@ const PredictorInputForm: React.FC = () => {
                   className="rounded-lg shadow-md w-full max-h-64 object-cover"
                   controls={false}
                 >
-                  <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
+                  <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
