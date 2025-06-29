@@ -30,7 +30,12 @@ const BRANCH_CODE_MAP: { [key: string]: string } = {
 
 
 // Form options
-const EXAM_TYPES = ['EAMCET-TS','EAMCET-AP','JEE Mains'];
+//const EXAM_TYPES = ['EAMCET', 'JEE Mains'];
+const EXAM_TYPES = [
+  { label: 'EAMCET-TS', value: 'EAMCET' },
+  { label: 'EAMCET-AP', value: 'EAMCET-AP' },
+  { label: 'JEE Mains', value: 'JEE Mains' },
+];
 const CATEGORIES = ['OC', 'BC_A', 'BC_B', 'BC_C', 'BC_D', 'BC_E', 'SC', 'ST'];
 const REGIONS = ['OU', 'AU', 'SVU'];
 const ACADEMIC_YEARS = ['2025-26', '2024-25', '2023-24'];
@@ -69,7 +74,7 @@ interface FormData {
 
 const PredictorInputForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    examType: EXAM_TYPES[0],
+    examType: EXAM_TYPES[0].value,
     rank: '',
     category: CATEGORIES[0],
     gender: 'Male',
@@ -201,7 +206,7 @@ const PredictorInputForm: React.FC = () => {
                   required
                 >
                   {EXAM_TYPES.map((type) => (
-                    <option key={type} value={type}>{type}</option>
+                    <option key={type.value} value={type.value}>{type.label}</option>
                   ))}
                 </select>
               </div>
