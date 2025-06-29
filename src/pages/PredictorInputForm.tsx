@@ -30,7 +30,7 @@ const BRANCH_CODE_MAP: { [key: string]: string } = {
 
 
 // Form options
-const EXAM_TYPES = ['EAMCET', 'JEE Mains'];
+const EXAM_TYPES = ['EAMCET-TS','EAMCET-AP','JEE Mains'];
 const CATEGORIES = ['OC', 'BC_A', 'BC_B', 'BC_C', 'BC_D', 'BC_E', 'SC', 'ST'];
 const REGIONS = ['OU', 'AU', 'SVU'];
 const ACADEMIC_YEARS = ['2025-26', '2024-25', '2023-24'];

@@ -102,7 +102,7 @@ const plans = [
     price: '₹49', // updated from ₹69
     description: 'Best for college seekers',
     features: [
-      '3 PDF Reports', // updated from Unlimited
+      'Unlimited PDF Reports', // updated from only 3 reports
       '60 College Matches',
       'Risk Level Analysis',
       'Advanced Filtering',
@@ -520,7 +520,7 @@ const PremiumPage: React.FC = () => {
                     {selectedPlan !== 'direct' && (
                       <div className="flex justify-between mb-3">
                         <span className="text-gray-600">Reports</span>
-                        <span className="font-medium">3 reports</span>
+                        <span className="font-medium">Unlimited reports</span>
                       </div>
                     )}
                     <div className="flex justify-between pt-3 border-t border-gray-200">

@@ -242,41 +242,41 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  // const sendOtp = async (email: string): Promise<void> => {
-  //   setIsLoading(true);
-  //   try {
-  //     await fetch('http://localhost:4000/api/send-otp', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({ email }),
-  //     });
-  //   } catch (error) {
-  //     console.error('Failed to send OTP', error);
-  //     throw error;
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+  const sendOtp = async (email: string): Promise<void> => {
+    setIsLoading(true);
+    try {
+      await fetch('https://localhost:4000/api/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+    } catch (error) {
+      console.error('Failed to send OTP', error);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  // const verifyOtp = async (email: string, otp: string): Promise<boolean> => {
-  //   setIsLoading(true);
-  //   try {
-  //     const res = await fetch('http://localhost:4000/api/verify-otp', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({ email, otp }),
-  //     });
+  const verifyOtp = async (email: string, otp: string): Promise<boolean> => {
+    setIsLoading(true);
+    try {
+      const res = await fetch('https://localhost:4000/api/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, otp }),
+      });
 
-  //     if (!res.ok) throw new Error('Invalid OTP');
+      if (!res.ok) throw new Error('Invalid OTP');
 
-  //     return true;
-  //   } catch (error) {
-  //     console.error('OTP verification failed', error);
-  //     return false;
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+      return true;
+    } catch (error) {
+      console.error('OTP verification failed', error);
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <AuthContext.Provider value={{
@@ -287,8 +287,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       signup,
       logout,
       upgradeAccount,
-      //sendOtp,
-      //verifyOtp
+      sendOtp,
+      verifyOtp
     }}>
       {children}
     </AuthContext.Provider>
